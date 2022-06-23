@@ -19,13 +19,18 @@ objectDetector.detect(img,gotResult)
 
 function draw(){
     image(img,0,0,640,420)
-    fill("white")
-    text("TOY_GUN",45,75)
-    noFill()
-    stroke("red")
-    rect(30,60,450,350)
-
   
+    if(status !=""){
+        for(i=0;i<object.length;i++){
+            document.getElementById("status").innerHTML="Status:objects detected "
+            fill("red")
+            precent=floor(object[i].confidence*100)
+            text(object[i].label+""+precent+"%",object[i].x,object[i].y)
+            noFill()
+            stroke("red")
+            rect(object[i].x,object[i].y,object[i].width,object[i].height)
+    }
+} 
 }
 
 function gotResult(error,result){
